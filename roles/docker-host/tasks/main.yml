@@ -1,0 +1,14 @@
+---
+- name: "create yum repository for docker"
+  ansible.builtin.yum_repository:
+    name: docker-repo
+    description: "repo for docker"
+    baseurl: "https://download.docker.com/linux/centos/7/x86_64/stable/"
+    enabled: yes
+    gpgcheck: no
+- name: Install prereqs
+  ansible.builtin.yum:
+    name: "{{item}}"
+    state: present
+  with_items:
+    - docker-ce

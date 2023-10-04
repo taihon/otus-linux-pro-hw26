@@ -1,0 +1,10 @@
+---
+- name: Copy docker project files
+  ansible.builtin.copy:
+    src: project/
+    dest: /root
+- name: run compose
+  ansible.builtin.command: 
+    cmd: docker compose up -d
+    chdir: /root
+#  changed_when: false
